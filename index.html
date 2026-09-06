@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alpha Delta Studios — Independent games, in flight</title>
+<meta name="description" content="Alpha Delta Studios is an independent game studio. Sign up to hear when we clear for takeoff.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy-deep: #0B1340;
+    --navy-panel: #121B4F;
+    --navy-panel-2: #16205C;
+    --green: #5FA636;
+    --green-bright: #7CC13F;
+    --white: #F5F7FA;
+    --slate: #8B94AC;
+    --line: rgba(245, 247, 250, 0.12);
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--navy-deep);
+    color: var(--white);
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- Hero ---------- */
+
+  .hero {
+    padding: 88px 0 64px;
+    text-align: center;
+  }
+
+  .hero-content {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: rise 0.7s ease-out 0.15s forwards;
+  }
+
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .logo {
+    width: 220px;
+    max-width: 60%;
+    height: auto;
+    margin: 0 auto 40px;
+    display: block;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.9rem, 4.5vw, 2.75rem);
+    line-height: 1.15;
+    color: var(--white);
+  }
+
+  .hero .sub {
+    margin: 20px auto 0;
+    max-width: 46ch;
+    color: var(--slate);
+    font-size: 1.05rem;
+  }
+
+  .signup {
+    margin: 36px auto 0;
+    display: flex;
+    gap: 10px;
+    max-width: 420px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .signup input[type="email"] {
+    flex: 1 1 240px;
+    min-width: 0;
+    background: var(--navy-panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 13px 16px;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+  }
+
+  .signup input[type="email"]::placeholder {
+    color: var(--slate);
+  }
+
+  .signup input[type="email"]:focus,
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid var(--green-bright);
+    outline-offset: 2px;
+  }
+
+  .signup button {
+    background: var(--green);
+    color: var(--navy-deep);
+    border: none;
+    border-radius: 6px;
+    padding: 13px 22px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+
+  .signup button:hover {
+    background: var(--green-bright);
+  }
+
+  .signup-note {
+    margin-top: 12px;
+    font-size: 0.82rem;
+    color: var(--slate);
+  }
+
+  /* ---------- Divider ---------- */
+
+  .divider {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    height: 28px;
+  }
+
+  .divider path {
+    stroke: var(--green);
+    stroke-width: 2;
+    fill: none;
+    stroke-linecap: round;
+    stroke-dasharray: 260;
+    stroke-dashoffset: 260;
+    animation: draw 1s ease-out 0.4s forwards;
+  }
+
+  @keyframes draw {
+    to { stroke-dashoffset: 0; }
+  }
+
+  /* ---------- Sections ---------- */
+
+  section {
+    padding: 56px 0;
+  }
+
+  section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 18px;
+  }
+
+  .about p {
+    color: var(--slate);
+    max-width: 62ch;
+    font-size: 1rem;
+  }
+
+  .about p + p {
+    margin-top: 14px;
+  }
+
+  /* ---------- Games ---------- */
+
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+    margin-top: 22px;
+  }
+
+  .game-card {
+    background: var(--navy-panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 20px;
+  }
+
+  .game-card .status {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: var(--green-bright);
+    background: rgba(95, 166, 54, 0.12);
+    border: 1px solid rgba(95, 166, 54, 0.3);
+    border-radius: 4px;
+    padding: 3px 8px;
+    margin-bottom: 12px;
+  }
+
+  .game-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 0 0 8px;
+  }
+
+  .game-card p {
+    color: var(--slate);
+    font-size: 0.92rem;
+    margin: 0;
+  }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    padding: 48px 0 64px;
+    text-align: center;
+    border-top: 1px solid var(--line);
+    margin-top: 8px;
+  }
+
+  .social-row {
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+    flex-wrap: wrap;
+    margin-bottom: 22px;
+  }
+
+  .social-row a {
+    color: var(--slate);
+    text-decoration: none;
+    font-size: 0.92rem;
+    transition: color 0.15s ease;
+  }
+
+  .social-row a:hover {
+    color: var(--white);
+  }
+
+  footer .copyright {
+    color: var(--slate);
+    font-size: 0.82rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-content { animation: none; opacity: 1; transform: none; }
+    .divider path { animation: none; stroke-dashoffset: 0; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="wrap hero-content">
+      <img class="logo" src="assets/logo.jpeg" alt="Alpha Delta Studios logo">
+      <h1>Independent games, in flight.</h1>
+      <p class="sub">Alpha Delta Studios is a small team building games worth chasing down the runway. Sign up to hear when we clear for takeoff.</p>
+
+      <!-- Wire this up to Mailchimp / ConvertKit / Buttondown later — swap the form action and add a hidden list-id field as needed. -->
+      <form class="signup" onsubmit="return false;">
+        <label for="email" class="visually-hidden" style="position:absolute; left:-9999px;">Email address</label>
+        <input type="email" id="email" name="email" placeholder="you@domain.com" required>
+        <button type="submit">Notify me</button>
+      </form>
+      <p class="signup-note">No spam — just word when there's something worth playing.</p>
+    </div>
+  </div>
+
+  <svg class="divider" viewBox="0 0 320 28" aria-hidden="true">
+    <path d="M10,20 C90,32 180,32 260,14 L246,10 M260,14 L252,22" />
+  </svg>
+
+  <section class="about">
+    <div class="wrap">
+      <h2>About us</h2>
+      <p>We're a small studio getting off the ground. Right now that means late nights, early prototypes, and figuring out exactly what kind of games we want to put into the world.</p>
+      <p>More soon — for now, thanks for stopping by.</p>
+    </div>
+  </section>
+
+  <svg class="divider" viewBox="0 0 320 28" aria-hidden="true">
+    <path d="M10,20 C90,32 180,32 260,14 L246,10 M260,14 L252,22" />
+  </svg>
+
+  <section class="games">
+    <div class="wrap">
+      <h2>In the hangar</h2>
+      <div class="games-grid">
+        <div class="game-card">
+          <span class="status">In development</span>
+          <h3>Untitled Project</h3>
+          <p>Details coming as we lock in the direction.</p>
+        </div>
+        <div class="game-card">
+          <span class="status">Early prototype</span>
+          <h3>Untitled Project</h3>
+          <p>Details coming as we lock in the direction.</p>
+        </div>
+        <div class="game-card">
+          <span class="status">Concept</span>
+          <h3>Untitled Project</h3>
+          <p>Details coming as we lock in the direction.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div class="social-row">
+        <a href="#" aria-label="Alpha Delta Studios on X">X</a>
+        <a href="#" aria-label="Alpha Delta Studios on Discord">Discord</a>
+        <a href="#" aria-label="Alpha Delta Studios on Instagram">Instagram</a>
+        <a href="#" aria-label="Alpha Delta Studios on YouTube">YouTube</a>
+      </div>
+      <p class="copyright">&copy; 2026 Alpha Delta Studios. Site in progress.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
