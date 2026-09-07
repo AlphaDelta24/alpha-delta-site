@@ -91,15 +91,14 @@
   .signup {
     margin: 36px auto 0;
     display: flex;
+    flex-direction: column;
     gap: 10px;
     max-width: 420px;
-    flex-wrap: wrap;
-    justify-content: center;
   }
 
-  .signup input[type="email"] {
-    flex: 1 1 240px;
-    min-width: 0;
+  .signup input[type="email"],
+  .signup input[type="text"] {
+    width: 100%;
     background: var(--navy-panel);
     border: 1px solid var(--line);
     border-radius: 6px;
@@ -109,15 +108,38 @@
     font-size: 0.95rem;
   }
 
-  .signup input[type="email"]::placeholder {
+  .signup input::placeholder {
     color: var(--slate);
   }
 
-  .signup input[type="email"]:focus,
+  .signup input:focus,
   button:focus-visible,
   a:focus-visible {
     outline: 2px solid var(--green-bright);
     outline-offset: 2px;
+  }
+
+  .fun-question-label {
+    font-size: 0.85rem;
+    color: var(--slate);
+    text-align: left;
+    margin: 4px 0 -2px 2px;
+  }
+
+  .consent-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    text-align: left;
+    font-size: 0.82rem;
+    color: var(--slate);
+    margin-top: 2px;
+  }
+
+  .consent-row input[type="checkbox"] {
+    margin-top: 3px;
+    accent-color: var(--green);
+    flex-shrink: 0;
   }
 
   .signup button {
@@ -131,6 +153,7 @@
     font-size: 0.95rem;
     cursor: pointer;
     transition: background 0.15s ease;
+    margin-top: 4px;
   }
 
   .signup button:hover {
@@ -281,20 +304,39 @@
            To switch to Mailchimp/ConvertKit/Buttondown later, replace the fetch URL below
            and its payload shape per that service's docs. -->
       <form class="signup" id="signup-form">
+        <label for="name" class="visually-hidden" style="position:absolute; left:-9999px;">Name</label>
+        <input type="text" id="name" name="name" placeholder="Name" required>
+
         <label for="email" class="visually-hidden" style="position:absolute; left:-9999px;">Email address</label>
         <input type="email" id="email" name="email" placeholder="you@domain.com" required>
+
+        <label class="consent-row">
+          <input type="checkbox" id="consent" name="consent" required>
+          <span>I'd like to receive emails from Alpha Delta Studios.</span>
+        </label>
+
         <button type="submit" id="signup-btn">Notify me</button>
       </form>
       <p class="signup-note" id="signup-status">No spam — just word when there's something worth playing.</p>
 
       <script>
+        // Where this signup came from — defaults to "website" here. If this form
+        // ever gets embedded elsewhere (a QR code, a different landing page),
+        // change this one value rather than adding a new field.
+        const signupSource = 'website';
+
         document.getElementById('signup-form').addEventListener('submit', async function (e) {
           e.preventDefault();
+          const nameInput = document.getElementById('name');
           const emailInput = document.getElementById('email');
+          const consentInput = document.getElementById('consent');
           const btn = document.getElementById('signup-btn');
           const status = document.getElementById('signup-status');
+
+          const name = nameInput.value.trim();
           const email = emailInput.value.trim();
-          if (!email) return;
+          const consent = consentInput.checked ? 'Yes' : 'No';
+          if (!name || !email || !consentInput.checked) return;
 
           btn.disabled = true;
           status.textContent = 'Sending…';
@@ -304,14 +346,19 @@
               method: 'POST',
               headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
               body: JSON.stringify({
+                name: name,
                 email: email,
-                _subject: 'New signup: ' + email
+                consent: consent,
+                source: signupSource,
+                _subject: ['New signup', email, name, signupSource, consent].join(' ||| ')
               })
             });
 
             if (res.ok) {
               status.textContent = "Thanks — you're on the list.";
+              nameInput.value = '';
               emailInput.value = '';
+              consentInput.checked = false;
             } else {
               status.textContent = 'Something went wrong — try again in a moment.';
             }
