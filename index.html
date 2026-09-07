@@ -272,16 +272,56 @@
   <div class="hero">
     <div class="wrap hero-content">
       <img class="logo" src="assets/logo.jpeg" alt="Alpha Delta Studios logo">
-      <h1>Independent games, in flight.</h1>
-      <p class="sub">Alpha Delta Studios is a small team building games worth chasing down the runway. Sign up to hear when we clear for takeoff.</p>
+      <h1>Games and Shit are on the way.</h1>
+      <p class="sub">Alpha Delta Studios is a small team building games we actually want to play. Sign up to hear when there's something to show.</p>
 
-      <!-- Wire this up to Mailchimp / ConvertKit / Buttondown later — swap the form action and add a hidden list-id field as needed. -->
-      <form class="signup" onsubmit="return false;">
+      <!-- Forwards submissions to contact@alphadeltastudios.com via FormSubmit.co.
+           First-ever submission triggers a one-time confirmation email to that inbox —
+           someone needs to click "Activate Form" in it before signups start arriving.
+           To switch to Mailchimp/ConvertKit/Buttondown later, replace the fetch URL below
+           and its payload shape per that service's docs. -->
+      <form class="signup" id="signup-form">
         <label for="email" class="visually-hidden" style="position:absolute; left:-9999px;">Email address</label>
         <input type="email" id="email" name="email" placeholder="you@domain.com" required>
-        <button type="submit">Notify me</button>
+        <button type="submit" id="signup-btn">Notify me</button>
       </form>
-      <p class="signup-note">No spam — just word when there's something worth playing.</p>
+      <p class="signup-note" id="signup-status">No spam — just word when there's something worth playing.</p>
+
+      <script>
+        document.getElementById('signup-form').addEventListener('submit', async function (e) {
+          e.preventDefault();
+          const emailInput = document.getElementById('email');
+          const btn = document.getElementById('signup-btn');
+          const status = document.getElementById('signup-status');
+          const email = emailInput.value.trim();
+          if (!email) return;
+
+          btn.disabled = true;
+          status.textContent = 'Sending…';
+
+          try {
+            const res = await fetch('https://formsubmit.co/ajax/contact@alphadeltastudios.com', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+              body: JSON.stringify({
+                email: email,
+                _subject: 'New mailing list signup — Alpha Delta Studios'
+              })
+            });
+
+            if (res.ok) {
+              status.textContent = "Thanks — you're on the list.";
+              emailInput.value = '';
+            } else {
+              status.textContent = 'Something went wrong — try again in a moment.';
+            }
+          } catch (err) {
+            status.textContent = 'Something went wrong — try again in a moment.';
+          } finally {
+            btn.disabled = false;
+          }
+        });
+      </script>
     </div>
   </div>
 
@@ -303,22 +343,22 @@
 
   <section class="games">
     <div class="wrap">
-      <h2>In the hangar</h2>
+      <h2>What we're building</h2>
       <div class="games-grid">
         <div class="game-card">
           <span class="status">In development</span>
-          <h3>Untitled Project</h3>
-          <p>Details coming as we lock in the direction.</p>
+          <h3>Ring Game</h3>
+          <p>A space station platformer — run the inside of a rotating ring with gravity pulling you outward.</p>
         </div>
         <div class="game-card">
-          <span class="status">Early prototype</span>
-          <h3>Untitled Project</h3>
-          <p>Details coming as we lock in the direction.</p>
+          <span class="status">Prototype</span>
+          <h3>Reminder App</h3>
+          <p>A simple app that pushes notifications for the things you actually need reminding about.</p>
         </div>
         <div class="game-card">
           <span class="status">Concept</span>
-          <h3>Untitled Project</h3>
-          <p>Details coming as we lock in the direction.</p>
+          <h3>Keelworks</h3>
+          <p>A grimy space-station black market game — build trust with clients, fabricate what they need, live with the consequences.</p>
         </div>
       </div>
     </div>
