@@ -1,0 +1,11 @@
+<nav class="site-nav">
+  <div class="wrap">
+    <a class="brand" href="{{ '/' | relative_url }}">Alpha Delta Studios</a>
+    <div class="links">
+      {% for item in site.nav_pages %}
+        <a href="{{ item.url | relative_url }}"
+           {% if page.url == item.url %}class="active"{% endif %}>{{ item.title }}</a>
+      {% endfor %}
+    </div>
+  </div>
+</nav>

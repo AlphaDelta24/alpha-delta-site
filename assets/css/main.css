@@ -1,0 +1,362 @@
+:root {
+  --navy-deep: #040F4F;
+  --navy-panel: #121B4F;
+  --navy-panel-2: #16205C;
+  --green: #5FA636;
+  --green-bright: #7CC13F;
+  --white: #F5F7FA;
+  --slate: #8B94AC;
+  --line: rgba(245, 247, 250, 0.12);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--navy-deep);
+  color: var(--white);
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+h1, h2, h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Site nav ---------- */
+
+.site-nav {
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.site-nav .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.site-nav .brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  text-decoration: none;
+  color: var(--white);
+}
+
+.site-nav .links {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.site-nav .links a {
+  text-decoration: none;
+  color: var(--slate);
+  font-size: 0.92rem;
+  transition: color 0.15s ease;
+}
+
+.site-nav .links a:hover,
+.site-nav .links a.active {
+  color: var(--white);
+}
+
+/* ---------- Page content shell ---------- */
+
+main {
+  padding: 56px 0 40px;
+}
+
+main .wrap > h1 {
+  font-size: 1.8rem;
+  margin-bottom: 24px;
+}
+
+main p {
+  color: var(--slate);
+  margin: 0 0 14px;
+}
+
+main ul {
+  color: var(--slate);
+  margin: 0 0 14px;
+  padding-left: 20px;
+}
+
+main a {
+  color: var(--green-bright);
+}
+
+/* ---------- Hero (home page) ---------- */
+
+.hero {
+  padding: 48px 0 32px;
+  text-align: center;
+}
+
+.hero-content {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: rise 0.7s ease-out 0.15s forwards;
+}
+
+@keyframes rise {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.logo {
+  width: 260px;
+  max-width: 70%;
+  height: auto;
+  margin: 0 auto 32px;
+  display: block;
+}
+
+.hero h1 {
+  font-size: clamp(1.9rem, 4.5vw, 2.75rem);
+  line-height: 1.15;
+  color: var(--white);
+}
+
+.hero .sub {
+  margin: 20px auto 0;
+  max-width: 46ch;
+  color: var(--slate);
+  font-size: 1.05rem;
+}
+
+.play-link {
+  display: inline-block;
+  margin-top: 18px;
+  font-size: 0.92rem;
+  color: var(--green-bright);
+  text-decoration: none;
+}
+
+.play-link:hover {
+  color: var(--white);
+}
+
+/* ---------- Signup form ---------- */
+
+.signup {
+  margin: 36px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 420px;
+}
+
+.signup input[type="email"],
+.signup input[type="text"] {
+  width: 100%;
+  background: var(--navy-panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 13px 16px;
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+}
+
+.signup input::placeholder { color: var(--slate); }
+
+.signup input:focus,
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--green-bright);
+  outline-offset: 2px;
+}
+
+.consent-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  text-align: left;
+  font-size: 0.82rem;
+  color: var(--slate);
+  margin-top: 2px;
+}
+
+.consent-row input[type="checkbox"] {
+  margin-top: 3px;
+  accent-color: var(--green);
+  flex-shrink: 0;
+}
+
+.signup button {
+  background: var(--green);
+  color: var(--navy-deep);
+  border: none;
+  border-radius: 6px;
+  padding: 13px 22px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  margin-top: 4px;
+}
+
+.signup button:hover { background: var(--green-bright); }
+
+.signup-note {
+  margin-top: 12px;
+  font-size: 0.82rem;
+  color: var(--slate);
+}
+
+/* ---------- Divider ---------- */
+
+.divider {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 40px auto;
+  height: 28px;
+}
+
+.divider path {
+  stroke: var(--green);
+  stroke-width: 2;
+  fill: none;
+  stroke-linecap: round;
+}
+
+/* ---------- Project / game cards ---------- */
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.game-card {
+  background: var(--navy-panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 20px;
+  display: block;
+  text-decoration: none;
+}
+
+.game-card .status {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--green-bright);
+  background: rgba(95, 166, 54, 0.12);
+  border: 1px solid rgba(95, 166, 54, 0.3);
+  border-radius: 4px;
+  padding: 3px 8px;
+  margin-bottom: 12px;
+}
+
+.game-card.shipped .status {
+  color: var(--navy-deep);
+  background: var(--green);
+  border-color: var(--green);
+}
+
+.game-card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: var(--white);
+}
+
+.game-card p {
+  color: var(--slate);
+  font-size: 0.92rem;
+  margin: 0;
+}
+
+.section-heading {
+  margin-top: 44px;
+}
+
+.section-heading:first-child {
+  margin-top: 0;
+}
+
+/* ---------- Blog list ---------- */
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.post-list li {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.post-list .post-date {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--slate);
+  margin-bottom: 4px;
+}
+
+.post-list a {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  color: var(--white);
+}
+
+.post-list a:hover { color: var(--green-bright); }
+
+/* ---------- Footer ---------- */
+
+footer {
+  padding: 40px 0 56px;
+  text-align: center;
+  border-top: 1px solid var(--line);
+  margin-top: 40px;
+}
+
+.social-row {
+  display: flex;
+  justify-content: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+
+.social-row a {
+  color: var(--slate);
+  text-decoration: none;
+  font-size: 0.92rem;
+  transition: color 0.15s ease;
+}
+
+.social-row a:hover { color: var(--white); }
+
+footer .copyright {
+  color: var(--slate);
+  font-size: 0.82rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-content { animation: none; opacity: 1; transform: none; }
+}

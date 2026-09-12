@@ -1,428 +1,102 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alpha Delta Studios — Independent games, in flight</title>
-<meta name="description" content="Alpha Delta Studios is an independent game studio. Sign up to hear when we clear for takeoff.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --navy-deep: #040F4F;
-    --navy-panel: #121B4F;
-    --navy-panel-2: #16205C;
-    --green: #5FA636;
-    --green-bright: #7CC13F;
-    --white: #F5F7FA;
-    --slate: #8B94AC;
-    --line: rgba(245, 247, 250, 0.12);
-  }
+---
+layout: default
+title: Home
+---
+<div class="hero">
+  <div class="wrap hero-content">
+    <img class="logo" src="{{ '/assets/img/logo.jpeg' | relative_url }}" alt="Alpha Delta Studios logo">
+    <h1>Cool games and kick ass shit are on the way!</h1>
+    <p class="sub">Alpha Delta Studios is a small team building games we actually want to play and whatever else spins up the creative juices. Sign up to hear when there's something to show.</p>
+    <a class="play-link" href="https://alphadeltastudios.itch.io/" target="_blank" rel="noopener">Play what we've already shipped &rarr;</a>
 
-  * { box-sizing: border-box; }
+    <form class="signup" id="signup-form">
+      <label for="name" style="position:absolute; left:-9999px;">Name</label>
+      <input type="text" id="name" name="name" placeholder="Name" required>
 
-  html { scroll-behavior: smooth; }
+      <label for="email" style="position:absolute; left:-9999px;">Email address</label>
+      <input type="email" id="email" name="email" placeholder="you@domain.com" required>
 
-  body {
-    margin: 0;
-    background: var(--navy-deep);
-    color: var(--white);
-    font-family: 'Inter', system-ui, sans-serif;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
+      <label class="consent-row">
+        <input type="checkbox" id="consent" name="consent" required>
+        <span>I'd like to receive emails from Alpha Delta Studios. See our <a href="{{ '/privacy.html' | relative_url }}">privacy policy</a>.</span>
+      </label>
 
-  h1, h2 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600;
-    margin: 0;
-    letter-spacing: -0.01em;
-  }
+      <button type="submit" id="signup-btn">Notify me</button>
+    </form>
+    <p class="signup-note" id="signup-status">No spam — just word when there's something worth playing.</p>
 
-  a {
-    color: inherit;
-  }
+    <script>
+      const signupSource = 'website';
 
-  .wrap {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
+      document.getElementById('signup-form').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const consentInput = document.getElementById('consent');
+        const btn = document.getElementById('signup-btn');
+        const status = document.getElementById('signup-status');
 
-  /* ---------- Hero ---------- */
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const consent = consentInput.checked ? 'Yes' : 'No';
+        if (!name || !email || !consentInput.checked) return;
 
-  .hero {
-    padding: 88px 0 64px;
-    text-align: center;
-  }
+        btn.disabled = true;
+        status.textContent = 'Sending…';
 
-  .hero-content {
-    opacity: 0;
-    transform: translateY(14px);
-    animation: rise 0.7s ease-out 0.15s forwards;
-  }
+        try {
+          const res = await fetch('https://formsubmit.co/ajax/contact@alphadeltastudios.com', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+              name: name,
+              email: email,
+              consent: consent,
+              source: signupSource,
+              _subject: ['New signup', email, name, signupSource, consent].join(' ||| ')
+            })
+          });
 
-  @keyframes rise {
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .logo {
-    width: 440px;
-    max-width: 80%;
-    height: auto;
-    margin: 0 auto 40px;
-    display: block;
-  }
-
-  .hero h1 {
-    font-size: clamp(1.9rem, 4.5vw, 2.75rem);
-    line-height: 1.15;
-    color: var(--white);
-  }
-
-  .hero .sub {
-    margin: 20px auto 0;
-    max-width: 46ch;
-    color: var(--slate);
-    font-size: 1.05rem;
-  }
-
-  .signup {
-    margin: 36px auto 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-width: 420px;
-  }
-
-  .signup input[type="email"],
-  .signup input[type="text"] {
-    width: 100%;
-    background: var(--navy-panel);
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    padding: 13px 16px;
-    color: var(--white);
-    font-family: 'Inter', sans-serif;
-    font-size: 0.95rem;
-  }
-
-  .signup input::placeholder {
-    color: var(--slate);
-  }
-
-  .signup input:focus,
-  button:focus-visible,
-  a:focus-visible {
-    outline: 2px solid var(--green-bright);
-    outline-offset: 2px;
-  }
-
-  .fun-question-label {
-    font-size: 0.85rem;
-    color: var(--slate);
-    text-align: left;
-    margin: 4px 0 -2px 2px;
-  }
-
-  .consent-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    text-align: left;
-    font-size: 0.82rem;
-    color: var(--slate);
-    margin-top: 2px;
-  }
-
-  .consent-row input[type="checkbox"] {
-    margin-top: 3px;
-    accent-color: var(--green);
-    flex-shrink: 0;
-  }
-
-  .signup button {
-    background: var(--green);
-    color: var(--navy-deep);
-    border: none;
-    border-radius: 6px;
-    padding: 13px 22px;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 0.95rem;
-    cursor: pointer;
-    transition: background 0.15s ease;
-    margin-top: 4px;
-  }
-
-  .signup button:hover {
-    background: var(--green-bright);
-  }
-
-  .signup-note {
-    margin-top: 12px;
-    font-size: 0.82rem;
-    color: var(--slate);
-  }
-
-  /* ---------- Divider ---------- */
-
-  .divider {
-    display: block;
-    width: 100%;
-    max-width: 320px;
-    margin: 0 auto;
-    height: 28px;
-  }
-
-  .divider path {
-    stroke: var(--green);
-    stroke-width: 2;
-    fill: none;
-    stroke-linecap: round;
-    stroke-dasharray: 260;
-    stroke-dashoffset: 260;
-    animation: draw 1s ease-out 0.4s forwards;
-  }
-
-  @keyframes draw {
-    to { stroke-dashoffset: 0; }
-  }
-
-  /* ---------- Sections ---------- */
-
-  section {
-    padding: 56px 0;
-  }
-
-  section h2 {
-    font-size: 1.5rem;
-    margin-bottom: 18px;
-  }
-
-  .about p {
-    color: var(--slate);
-    max-width: 62ch;
-    font-size: 1rem;
-  }
-
-  .about p + p {
-    margin-top: 14px;
-  }
-
-  /* ---------- Games ---------- */
-
-  .games-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 14px;
-    margin-top: 22px;
-  }
-
-  .game-card {
-    background: var(--navy-panel);
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    padding: 20px;
-  }
-
-  .game-card .status {
-    display: inline-block;
-    font-size: 0.75rem;
-    color: var(--green-bright);
-    background: rgba(95, 166, 54, 0.12);
-    border: 1px solid rgba(95, 166, 54, 0.3);
-    border-radius: 4px;
-    padding: 3px 8px;
-    margin-bottom: 12px;
-  }
-
-  .game-card h3 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.05rem;
-    font-weight: 600;
-    margin: 0 0 8px;
-  }
-
-  .game-card p {
-    color: var(--slate);
-    font-size: 0.92rem;
-    margin: 0;
-  }
-
-  /* ---------- Footer ---------- */
-
-  footer {
-    padding: 48px 0 64px;
-    text-align: center;
-    border-top: 1px solid var(--line);
-    margin-top: 8px;
-  }
-
-  .social-row {
-    display: flex;
-    justify-content: center;
-    gap: 22px;
-    flex-wrap: wrap;
-    margin-bottom: 22px;
-  }
-
-  .social-row a {
-    color: var(--slate);
-    text-decoration: none;
-    font-size: 0.92rem;
-    transition: color 0.15s ease;
-  }
-
-  .social-row a:hover {
-    color: var(--white);
-  }
-
-  footer .copyright {
-    color: var(--slate);
-    font-size: 0.82rem;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero-content { animation: none; opacity: 1; transform: none; }
-    .divider path { animation: none; stroke-dashoffset: 0; }
-  }
-</style>
-</head>
-<body>
-
-  <div class="hero">
-    <div class="wrap hero-content">
-      <img class="logo" src="assets/logo.jpeg" alt="Alpha Delta Studios logo">
-      <h1>Cool games and kick ass shit are on the way!</h1>
-      <p class="sub">Alpha Delta Studios is a small team building games we actually want to play and whatever else spins up the creative juices. Sign up to hear when there's something to show.</p>
-
-      <!-- Forwards submissions to contact@alphadeltastudios.com via FormSubmit.co.
-           First-ever submission triggers a one-time confirmation email to that inbox —
-           someone needs to click "Activate Form" in it before signups start arriving.
-           To switch to Mailchimp/ConvertKit/Buttondown later, replace the fetch URL below
-           and its payload shape per that service's docs. -->
-      <form class="signup" id="signup-form">
-        <label for="name" class="visually-hidden" style="position:absolute; left:-9999px;">Name</label>
-        <input type="text" id="name" name="name" placeholder="Name" required>
-
-        <label for="email" class="visually-hidden" style="position:absolute; left:-9999px;">Email address</label>
-        <input type="email" id="email" name="email" placeholder="you@domain.com" required>
-
-        <label class="consent-row">
-          <input type="checkbox" id="consent" name="consent" required>
-          <span>I'd like to receive emails from Alpha Delta Studios. See our <a href="privacy.html" style="color: var(--green-bright);">privacy policy</a>.</span>
-        </label>
-
-        <button type="submit" id="signup-btn">Notify me</button>
-      </form>
-      <p class="signup-note" id="signup-status">No spam — just word when there's something worth playing.</p>
-
-      <script>
-        // Where this signup came from — defaults to "website" here. If this form
-        // ever gets embedded elsewhere (a QR code, a different landing page),
-        // change this one value rather than adding a new field.
-        const signupSource = 'website';
-
-        document.getElementById('signup-form').addEventListener('submit', async function (e) {
-          e.preventDefault();
-          const nameInput = document.getElementById('name');
-          const emailInput = document.getElementById('email');
-          const consentInput = document.getElementById('consent');
-          const btn = document.getElementById('signup-btn');
-          const status = document.getElementById('signup-status');
-
-          const name = nameInput.value.trim();
-          const email = emailInput.value.trim();
-          const consent = consentInput.checked ? 'Yes' : 'No';
-          if (!name || !email || !consentInput.checked) return;
-
-          btn.disabled = true;
-          status.textContent = 'Sending…';
-
-          try {
-            const res = await fetch('https://formsubmit.co/ajax/contact@alphadeltastudios.com', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-              body: JSON.stringify({
-                name: name,
-                email: email,
-                consent: consent,
-                source: signupSource,
-                _subject: ['New signup', email, name, signupSource, consent].join(' ||| ')
-              })
-            });
-
-            if (res.ok) {
-              status.textContent = "Thanks — you're on the list.";
-              nameInput.value = '';
-              emailInput.value = '';
-              consentInput.checked = false;
-            } else {
-              status.textContent = 'Something went wrong — try again in a moment.';
-            }
-          } catch (err) {
+          if (res.ok) {
+            status.textContent = "Thanks — you're on the list.";
+            nameInput.value = '';
+            emailInput.value = '';
+            consentInput.checked = false;
+          } else {
             status.textContent = 'Something went wrong — try again in a moment.';
-          } finally {
-            btn.disabled = false;
           }
-        });
-      </script>
+        } catch (err) {
+          status.textContent = 'Something went wrong — try again in a moment.';
+        } finally {
+          btn.disabled = false;
+        }
+      });
+    </script>
+  </div>
+</div>
+
+<svg class="divider" viewBox="0 0 320 28" aria-hidden="true">
+  <path d="M10,20 C90,32 180,32 260,14 L246,10 M260,14 L252,22" />
+</svg>
+
+<div class="wrap">
+  <h2>What we're building</h2>
+  <div class="games-grid">
+    <div class="game-card">
+      <span class="status">In development</span>
+      <h3>Ring Game</h3>
+      <p>A space station platformer — run the inside of a rotating ring with gravity pulling you outward.</p>
+    </div>
+    <div class="game-card">
+      <span class="status">Prototype</span>
+      <h3>Reminder App</h3>
+      <p>A simple app that pushes notifications for the things you actually need reminding about.</p>
+    </div>
+    <div class="game-card">
+      <span class="status">Concept</span>
+      <h3>Keelworks</h3>
+      <p>A grimy space-station black market game — build trust with clients, fabricate what they need, live with the consequences.</p>
     </div>
   </div>
-
-  <svg class="divider" viewBox="0 0 320 28" aria-hidden="true">
-    <path d="M10,20 C90,32 180,32 260,14 L246,10 M260,14 L252,22" />
-  </svg>
-
-  <section class="about">
-    <div class="wrap">
-      <h2>About us</h2>
-      <p>We're a small studio getting off the ground. Right now that means late nights, early prototypes, and figuring out exactly what kind of games we want to put into the world.</p>
-      <p>More soon — for now, thanks for stopping by.</p>
-    </div>
-  </section>
-
-  <svg class="divider" viewBox="0 0 320 28" aria-hidden="true">
-    <path d="M10,20 C90,32 180,32 260,14 L246,10 M260,14 L252,22" />
-  </svg>
-
-  <section class="games">
-    <div class="wrap">
-      <h2>What we're building</h2>
-      <div class="games-grid">
-        <div class="game-card">
-          <span class="status">In development</span>
-          <h3>Ring Game</h3>
-          <p>A space station platformer — run the inside of a rotating ring with gravity pulling you outward.</p>
-        </div>
-        <div class="game-card">
-          <span class="status">Prototype</span>
-          <h3>Reminder App</h3>
-          <p>A simple app that pushes notifications for the things you actually need reminding about.</p>
-        </div>
-        <div class="game-card">
-          <span class="status">Concept</span>
-          <h3>Keelworks</h3>
-          <p>A grimy space-station black market game — build trust with clients, fabricate what they need, live with the consequences.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <div class="wrap">
-      <div class="social-row">
-        <a href="twitter.html" aria-label="Alpha Delta Studios on Twitter">Twitter</a>
-        <a href="social.html" aria-label="Alpha Delta Studios on Discord">Discord</a>
-        <a href="social.html" aria-label="Alpha Delta Studios on Instagram">Instagram</a>
-        <a href="social.html" aria-label="Alpha Delta Studios on YouTube">YouTube</a>
-        <a href="privacy.html">Privacy</a>
-      </div>
-      <p class="copyright">&copy; 2026 Alpha Delta Studios. Site in progress.</p>
-    </div>
-  </footer>
-
-</body>
-</html>
+  <p style="margin-top: 20px;"><a href="{{ '/projects.html' | relative_url }}">See everything we're working on &rarr;</a></p>
+</div>

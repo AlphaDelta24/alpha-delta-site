@@ -1,0 +1,24 @@
+title: Alpha Delta Studios
+description: "Independent games (and whatever else spins up the creative juices)."
+url: "https://alphadeltastudios.com"
+baseurl: ""
+
+markdown: kramdown
+permalink: /blog/:year/:month/:day/:title/
+
+plugins:
+  - jekyll-sitemap
+
+# Nav order lives here so it's edited once, not hunted for in template code
+nav_pages:
+  - title: Home
+    url: /
+  - title: About
+    url: /about.html
+  - title: Projects
+    url: /projects.html
+  - title: Blog
+    url: /blog.html
+
+exclude:
+  - README.md
