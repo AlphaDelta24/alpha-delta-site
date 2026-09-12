@@ -14,11 +14,11 @@ nav_pages:
   - title: Home
     url: /
   - title: About
-    url: /about.html
+    url: /about/
   - title: Projects
-    url: /projects.html
+    url: /projects/
   - title: Blog
-    url: /blog.html
+    url: /blog/
 
 exclude:
   - README.md
