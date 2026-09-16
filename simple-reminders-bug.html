@@ -1,0 +1,93 @@
+---
+layout: default
+title: Report a Bug — Simple Reminders
+description: Found something broken in Simple Reminders? Let us know.
+permalink: /simple-reminders-bug/
+---
+<div class="wrap">
+
+  <div style="display:flex;align-items:center;gap:16px;margin-bottom:36px;padding-bottom:28px;border-bottom:1px solid var(--line);">
+    <div style="width:52px;height:52px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;">🐛</div>
+    <div>
+      <h1 style="font-size:1.4rem;color:var(--white);margin:0;">Report a Bug</h1>
+      <p style="margin:4px 0 0;font-size:0.82rem;color:var(--slate);">Simple Reminders — Alpha Delta Studios</p>
+    </div>
+  </div>
+
+  <p>Found something broken? Fill this out and we'll take a look. Include as much detail as you can — the more specific, the faster we can track it down.</p>
+
+  <form
+    action="https://formsubmit.co/contact@alphadeltastudios.com"
+    method="POST"
+    id="bug-form"
+    style="margin-top:28px;"
+  >
+    <!-- FormSubmit config -->
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_next" value="https://alphadeltastudios.com/simple-reminders-bug/?sent=1">
+    <input type="hidden" name="_subject" id="subject-field" value="BUG REPORT: SIMPLE REMINDERS">
+
+    <div style="margin-bottom:20px;">
+      <label style="display:block;font-family:'Space Grotesk',sans-serif;font-size:0.9rem;color:var(--white);margin-bottom:8px;">Your email address</label>
+      <input
+        type="email"
+        name="email"
+        required
+        placeholder="you@example.com"
+        style="width:100%;background:var(--navy-panel);border:1px solid var(--line);border-radius:6px;padding:12px 16px;color:var(--white);font-family:'Inter',sans-serif;font-size:0.95rem;"
+      >
+    </div>
+
+    <div style="margin-bottom:20px;">
+      <label style="display:block;font-family:'Space Grotesk',sans-serif;font-size:0.9rem;color:var(--white);margin-bottom:8px;">Brief description <span style="color:var(--slate);font-size:0.8rem;">(becomes the email subject)</span></label>
+      <input
+        type="text"
+        name="bug_description"
+        id="bug-description"
+        required
+        placeholder="e.g. Reminder not firing on Tuesdays"
+        style="width:100%;background:var(--navy-panel);border:1px solid var(--line);border-radius:6px;padding:12px 16px;color:var(--white);font-family:'Inter',sans-serif;font-size:0.95rem;"
+      >
+    </div>
+
+    <div style="margin-bottom:28px;">
+      <label style="display:block;font-family:'Space Grotesk',sans-serif;font-size:0.9rem;color:var(--white);margin-bottom:8px;">Steps to reproduce</label>
+      <textarea
+        name="steps_to_reproduce"
+        required
+        rows="6"
+        placeholder="1. Open the app&#10;2. Add a weekly reminder for Tuesday at 9am&#10;3. Wait for Tuesday..."
+        style="width:100%;background:var(--navy-panel);border:1px solid var(--line);border-radius:6px;padding:12px 16px;color:var(--white);font-family:'Inter',sans-serif;font-size:0.95rem;resize:vertical;"
+      ></textarea>
+    </div>
+
+    <button
+      type="submit"
+      style="background:var(--green);color:var(--navy-deep);border:none;border-radius:6px;padding:13px 28px;font-family:'Inter',sans-serif;font-weight:600;font-size:0.95rem;cursor:pointer;transition:background 0.15s ease;"
+      onmouseover="this.style.background='var(--green-bright)'"
+      onmouseout="this.style.background='var(--green)'"
+    >
+      Submit bug report
+    </button>
+  </form>
+
+  <script>
+    const desc = document.getElementById('bug-description');
+    const subj = document.getElementById('subject-field');
+    if (desc && subj) {
+      desc.addEventListener('input', function() {
+        subj.value = 'BUG REPORT: SIMPLE REMINDERS' + (this.value.trim() ? ' - ' + this.value.trim() : '');
+      });
+    }
+
+    // Show success message if redirected back with ?sent=1
+    if (window.location.search.includes('sent=1')) {
+      const form = document.getElementById('bug-form');
+      if (form) {
+        form.innerHTML = '<p style="color:var(--green-bright);font-size:1rem;">Got it — thanks for the report. We\'ll follow up at your email if we need more details.</p>';
+      }
+    }
+  </script>
+
+</div>
