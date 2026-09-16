@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Reminders — Help</title>
+  <meta name="description" content="How to use Simple Reminders — adding reminders, recurrence types, categories, backup and restore, and settings.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #222;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+    }
+    a { color: #1a2f6b; }
+    a:hover { color: #3db84a; }
+    nav {
+      padding: 1rem 1.5rem;
+      border-bottom: 1px solid #e8e8e8;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+    nav .brand { font-weight: 700; color: #111; text-decoration: none; font-size: 0.95rem; }
+    nav .links { display: flex; gap: 1.5rem; }
+    nav .links a { color: #555; text-decoration: none; font-size: 0.875rem; }
+    nav .links a:hover { color: #111; }
+    .wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+    .app-id {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    .app-icon {
+      width: 52px;
+      height: 52px;
+      background: #3db84a;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .app-id h1 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #0d1b3e;
+    }
+    .app-id p {
+      margin: 0.1rem 0 0;
+      font-size: 0.8rem;
+      color: #888;
+    }
+    h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 2.5rem 0 0.5rem;
+      color: #111;
+    }
+    h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin: 1.5rem 0 0.35rem;
+      color: #333;
+    }
+    p { margin: 0 0 1rem; color: #333; }
+    ul, ol { margin: 0 0 1rem; padding-left: 1.4rem; }
+    li { margin-bottom: 0.3rem; color: #333; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0 1.5rem;
+      font-size: 0.875rem;
+    }
+    th {
+      text-align: left;
+      padding: 0.5rem 0.75rem;
+      background: #f5f5f3;
+      font-weight: 600;
+      border-bottom: 2px solid #ddd;
+      color: #111;
+    }
+    td {
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid #eee;
+      vertical-align: top;
+      color: #333;
+    }
+    td:first-child { font-weight: 600; color: #0d1b3e; white-space: nowrap; }
+    .note {
+      background: #f5f5f3;
+      border-left: 3px solid #3db84a;
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      color: #333;
+    }
+    .warn {
+      background: #fff9f0;
+      border-left: 3px solid #e09000;
+      padding: 0.75rem 1rem;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+      color: #333;
+    }
+    footer {
+      border-top: 1px solid #e8e8e8;
+      padding: 1.5rem;
+      font-size: 0.8rem;
+      color: #888;
+      text-align: center;
+    }
+    footer a { color: #888; margin: 0 0.5rem; }
+    footer a:hover { color: #111; }
+    @media (max-width: 540px) {
+      table { font-size: 0.8rem; }
+      td:first-child { white-space: normal; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="brand" href="https://alphadeltastudios.com/">Alpha Delta Studios</a>
+  <div class="links">
+    <a href="https://alphadeltastudios.com/">Home</a>
+    <a href="https://alphadeltastudios.com/about/">About</a>
+    <a href="https://alphadeltastudios.com/projects/">Projects</a>
+    <a href="https://alphadeltastudios.com/blog/">Blog</a>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <div class="app-id">
+    <div class="app-icon">🔔</div>
+    <div>
+      <h1>Simple Reminders</h1>
+      <p>Help &amp; user guide — Alpha Delta Studios</p>
+    </div>
+  </div>
+
+  <p>Simple Reminders stores everything on your device. There's no account, no sync, no cloud. Your data stays on your phone unless you export it.</p>
+
+  <p>Navigation runs along the bottom of the screen: Home, Categories, the green + button to add a reminder, Calendar, and Settings.</p>
+
+
+  <h2>Adding a reminder</h2>
+
+  <p>Tap the green + button. Fill in the task name, pick a category, set the recurrence type and time, and tap Add Reminder. That's it.</p>
+
+  <p>To edit a reminder, tap the pencil icon on its card. To delete one, tap the trash icon — you'll get a confirmation before anything's gone.</p>
+
+
+  <h2>Recurrence types</h2>
+
+  <table>
+    <thead>
+      <tr><th>Type</th><th>How it works</th><th>Good for</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Daily</td>
+        <td>Every day, no exceptions.</td>
+        <td>Medications, morning routines, water intake.</td>
+      </tr>
+      <tr>
+        <td>Weekly</td>
+        <td>Pick which days of the week. You can select more than one.</td>
+        <td>Gym days, weekly calls, trash day.</td>
+      </tr>
+      <tr>
+        <td>Monthly</td>
+        <td>Pick specific dates of the month — the 1st, 15th, whatever. Multiple dates allowed.</td>
+        <td>Bills, rent, recurring appointments.</td>
+      </tr>
+      <tr>
+        <td>Every X Days</td>
+        <td>Set an interval and a start date. The app counts forward from there regardless of the calendar.</td>
+        <td>Oil changes, filter replacements, anything on a cycle rather than a date.</td>
+      </tr>
+      <tr>
+        <td>One Time</td>
+        <td>Shows on a single date you pick, then never again.</td>
+        <td>One-off appointments, deadlines, a specific errand.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note">If a task is tied to the calendar (bills, rent), use Monthly. If it's tied to elapsed time (car maintenance, refills), use Every X Days.</div>
+
+
+  <h2>Categories</h2>
+
+  <p>The app ships with nine default categories. You can add your own, rename them, change their color, delete the ones you don't use, and reorder them however you want.</p>
+
+  <h3>Adding a category</h3>
+  <p>Go to the Categories tab or Settings → Manage Categories, tap + Add Category, type a name, and tap Add.</p>
+
+  <h3>Reordering</h3>
+  <p>On the Categories tab, tap Edit Order and drag things around. The order saves automatically.</p>
+
+  <h3>Deleting a category</h3>
+  <p>Tap the trash icon next to it. Reminders that used that category don't get deleted — they just show an unassigned label until you edit them.</p>
+
+
+  <h2>The Home tab</h2>
+
+  <p>Shows today's reminders sorted by time. Tap View All in the top right to see everything across all days.</p>
+
+  <p>The green checkmark marks a reminder done for today. The skip button (circular arrow) skips it for today without marking it complete. Both reset at midnight.</p>
+
+  <p>Reminders whose time has already passed today are dimmed and marked Past. They're still there so you can act on them.</p>
+
+
+  <h2>The Calendar tab</h2>
+
+  <p>Shows the current month. Dates with reminders scheduled have a small dot under the number. Tap any date to see what's on it. You can add a reminder directly from there too — it'll pre-fill the date for you.</p>
+
+  <p>Note: Every X Days reminders don't appear on the calendar because their future dates depend on when they were last triggered.</p>
+
+
+  <h2>Backup and restore</h2>
+
+  <p>This is the most important thing to understand about Simple Reminders: <strong>there is no automatic backup</strong>. If you uninstall the app, get a new phone, or clear your app data, your reminders are gone unless you exported them first.</p>
+
+  <div class="warn">Before switching phones or reinstalling the app, export your data first. There is no way to recover reminders that weren't backed up.</div>
+
+  <h3>Exporting</h3>
+  <p>Go to Settings → Backup &amp; Restore → Export All Data. A <code>.json</code> file downloads to your device. Save it somewhere you'll be able to find it — your Downloads folder, Google Drive, email it to yourself.</p>
+
+  <p>The export includes all your reminders and any custom categories you've created. It doesn't include statistics.</p>
+
+  <h3>Importing</h3>
+  <p>Go to Settings → Backup &amp; Restore → Import Data and select your <code>.json</code> file. You'll be asked how to handle it:</p>
+
+  <ul>
+    <li><strong>Add to Existing</strong> — merges the imported reminders with what's already in the app. If an imported reminder has the same ID as one already there, it's skipped.</li>
+    <li><strong>Replace All Existing</strong> — deletes everything currently in the app and replaces it with the imported data. You'll confirm before anything's deleted.</li>
+  </ul>
+
+  <div class="note">Moving to a new phone: export on the old device, transfer the file (email, Drive, whatever's easy), install Simple Reminders on the new device, import using Replace All Existing.</div>
+
+  <p>The export file is plain JSON — you can open it in any text editor. Don't edit it manually unless you're sure what you're doing. A malformed file won't import.</p>
+
+
+  <h2>Settings reference</h2>
+
+  <h3>Dark Mode</h3>
+  <p>Switches between dark (default) and light themes. Saved across sessions.</p>
+
+  <h3>One-Time Reminders</h3>
+  <p>Controls how long past one-time reminders are kept before automatic deletion. Default is 30 days. If changing this would delete existing reminders, you'll see a count of how many before anything happens.</p>
+
+  <h3>Manage Categories</h3>
+  <p>Add, reorder, rename, or delete categories.</p>
+
+  <h3>Reset App to Default</h3>
+  <p>Deletes everything — all reminders, custom categories, and statistics — and resets the app to its original state. This cannot be undone. There's a confirmation prompt before it runs.</p>
+
+  <h3>Statistics</h3>
+  <p>Running count of reminders delivered and skipped. Tap Edit to choose which stats show and in what order.</p>
+
+
+  <h2>Common questions</h2>
+
+  <h3>Why didn't my notification fire?</h3>
+  <p>Check that the app has notification permissions in your device settings. On some Android devices, battery optimization or Doze mode can delay or block background notifications — you may need to exempt Simple Reminders from battery optimization in your phone's settings.</p>
+
+  <h3>Do reminders survive a phone restart?</h3>
+  <p>Yes. The app reschedules notifications automatically after the device boots.</p>
+
+  <h3>Can I remind myself about the same thing at different times?</h3>
+  <p>Yes — just create two separate reminders with the same task name and different times or recurrence settings.</p>
+
+  <h3>I deleted a category and some reminders lost their label. How do I fix it?</h3>
+  <p>Edit each affected reminder (tap the pencil icon) and pick a new category.</p>
+
+  <h3>Does it sync across devices?</h3>
+  <p>Not currently. Use export and import to move data between devices manually.</p>
+
+  <h3>I lost my reminders after reinstalling. Can I get them back?</h3>
+  <p>Only if you have a saved export file. There's no way to recover reminders that weren't backed up before uninstalling.</p>
+
+  <h3>Something else isn't working</h3>
+  <p>Email us at <a href="mailto:contact@alphadeltastudios.com">contact@alphadeltastudios.com</a>. Include what happened and a screenshot if you can.</p>
+
+</div>
+
+<footer>
+  <a href="https://alphadeltastudios.com/twitter/">Twitter</a>
+  <a href="https://alphadeltastudios.com/social/">Discord</a>
+  <a href="mailto:contact@alphadeltastudios.com">Contact</a>
+  <a href="https://alphadeltastudios.com/privacy/">Privacy</a>
+  <br><br>
+  © 2026 Alpha Delta Studios.
+</footer>
+
+</body>
+</html>
