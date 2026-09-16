@@ -62,7 +62,7 @@ h1, h2, h3 {
 
 .site-nav .links {
   display: flex;
-  gap: 24px;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
@@ -111,7 +111,7 @@ main a {
 /* ---------- Hero (home page) ---------- */
 
 .hero {
-  padding: 48px 0 32px;
+  padding: 24px 0 32px;
   text-align: center;
 }
 
