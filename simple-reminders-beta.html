@@ -47,7 +47,17 @@ permalink: /simple-reminders-beta/
 
   <p>When it asks for notification permission, <strong>grant it</strong>. That's the whole point of the app. Without it you'll see your reminders but they won't fire.</p>
 
-  <p>The setup will also ask you to disable "Pause app activity if unused" — do it. Android will put the app to sleep if you haven't opened it in a while, which blocks reminders. The setup walks you right to the setting.</p>
+  <div style="background:var(--navy-panel);border-left:3px solid var(--green);padding:16px 20px;margin:20px 0;border-radius:0 8px 8px 0;">
+    <p style="margin:0 0 8px;color:var(--white);font-weight:700;">⚠️ Do this before you do anything else:</p>
+    <p style="margin:0;color:var(--slate);">Android will eventually pause the app if you haven't opened it recently, which will stop your reminders cold. To prevent it:</p>
+    <ol style="margin:12px 0 0;padding-left:1.4rem;color:var(--slate);">
+      <li>Go to your phone's <strong style="color:var(--white);">Settings → Apps → Simple Reminders</strong></li>
+      <li>Tap <strong style="color:var(--white);">Manage app if unused</strong></li>
+      <li>Tap <strong style="color:var(--white);">Battery</strong></li>
+      <li>Set it to <strong style="color:var(--white);">Unrestricted</strong></li>
+    </ol>
+    <p style="margin:12px 0 0;color:var(--slate);">The app's setup wizard will also walk you to this setting — but do it manually if anything goes wrong.</p>
+  </div>
 
 
   <h2>What I'm testing</h2>
