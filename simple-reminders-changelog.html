@@ -1,0 +1,123 @@
+---
+layout: default
+title: Simple Reminders Changelog
+permalink: /simple-reminders-changelog/
+---
+<div class="wrap">
+  <h1>Simple Reminders Changelog</h1>
+  <p>What's changed in each release. Newest first.</p>
+  <p><a href="/simple-reminders-beta/">Back to the beta page</a></p>
+
+  <!-- To add a release: copy a whole <section> block, paste it at the top of the list, and edit. -->
+  <section>
+    <h2>v0.8.2 Beta</h2>
+    <p><em>September 26, 2026</em></p>
+
+    <h3>New</h3>
+    <ul>
+      <li><strong>Report a Bug button</strong> in Settings, which opens the bug report form.</li>
+      <li><strong>Bigger color picker for categories.</strong> 6 theme colors on top, plus 24 more below. Go wild.</li>
+      <li><strong>Live preview when editing a category.</strong> The name and color update as you change them, and Cancel puts everything back.</li>
+      <li><strong>Exit confirmation.</strong> Pressing back on the Home screen now asks before closing, and Exit fully shuts the app down instead of leaving it running in the background.</li>
+    </ul>
+
+    <h3>Fixed</h3>
+    <ul>
+      <li><strong>Back button.</strong> It used to close the app from anywhere. Now it closes whatever popup is open, then takes you Home, then asks before exiting.</li>
+      <li><strong>Editing categories.</strong> Renaming or recoloring a built-in category (like Home or Pets) wasn't saving. It does now.</li>
+      <li><strong>Categories jumping around.</strong> Edited categories now stay in the same spot in the list instead of moving or disappearing.</li>
+      <li><strong>Category colors resetting.</strong> Custom colors now stick after you close and reopen the app.</li>
+      <li><strong>Bottom menu.</strong> "Settings" was getting cut off on some screens. All five buttons now fit evenly.</li>
+      <li><strong>Version number.</strong> Android's App Info now shows the correct version (0.8.2) instead of 1.0.</li>
+    </ul>
+
+    <h3>Known issues</h3>
+    <ul>
+      <li>Reminders may not reschedule after a phone restart. Still being tested.</li>
+      <li><strong>"Every X Days" reminders only fire once.</strong> After the first alert, the next one isn't scheduled, and the reminder shows as due every day on the Home screen. Workaround: open the reminder and tap Save (no changes needed) to schedule its next alert. Fix coming in the next version.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>v0.8.1</h2>
+    <p><em>September 19, 2026</em></p>
+    <ul>
+      <li>First-run setup wizard: new users are walked through theme selection, notification permissions, battery optimization, and catch-up alert preference before entering the app</li>
+      <li>Notification settings panel added to Settings tab: master on/off toggle and catch-up alerts toggle</li>
+      <li>Battery optimization prompt: explains Android sleep behavior and links directly to the app's battery settings page</li>
+      <li>Catch-up alerts preference: user chooses whether missed notifications fire on boot (default off)</li>
+      <li>Notification permission request now includes explanation before the system prompt fires</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>v0.8</h2>
+    <p><em>September 19, 2026</em></p>
+    <ul>
+      <li>Bug report form added to Settings (links to <a href="/simple-reminders-bug/">alphadeltastudios.com/simple-reminders-bug/</a>)</li>
+      <li>Help page linked from tutorial modal and Settings</li>
+      <li>Settings sections reordered: Appearance → Categories → Help → Backup &amp; Restore → One-Time Reminders → Statistics → Danger Zone → About</li>
+      <li>Version number updated in About section</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>v0.7</h2>
+    <p><em>September 19, 2026</em></p>
+    <ul>
+      <li>Full header rebrand: navy gradient, green bell, Orbitron font, "SIMPLE REMINDERS" title, "ALPHA DELTA STUDIOS" green byline</li>
+      <li>Orbitron applied globally to all headings and buttons</li>
+      <li>BottomNav extracted as isolated component</li>
+      <li>Category chips changed from rounded-full to rounded-md</li>
+      <li>Category colors shifted to dark blue-to-green spectrum (AD palette)</li>
+      <li>Active nav tab now shows as green text only (no white box)</li>
+      <li>FAB button changed to green</li>
+      <li>Action buttons changed to blue-900 with border</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>v0.6</h2>
+    <p><em>September 19, 2026</em></p>
+    <ul>
+      <li>First-launch tutorial modal (5 steps, scrollable)</li>
+      <li>"View App Tutorial" button in Settings</li>
+      <li>Dark mode on by default</li>
+      <li>App renamed to "Simple Reminders" (plural)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>v0.5</h2>
+    <p><em>September 19, 2026</em></p>
+    <ul>
+      <li>BottomNav isolated as its own component (checkpoint)</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>v0.4</h2>
+    <ul>
+      <li>Storage optimization (single reminders-all key)</li>
+      <li>Category editing with color swatches</li>
+      <li>Drag-and-drop reordering for categories and stats</li>
+      <li>Import confirmation (two-step replace warning)</li>
+      <li>One-time reminder auto-delete setting with confirmation modal</li>
+      <li>Timezone fix (parseLocalDate helper)</li>
+      <li>Default backup reminder seeded on first launch</li>
+      <li>Dark mode applied to all modals, home cards, calendar cards</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>v0.3</h2>
+    <ul>
+      <li>Statistics system</li>
+      <li>Skip functionality</li>
+      <li>Category None chip, alphabetical sorting</li>
+      <li>Various bug fixes</li>
+    </ul>
+  </section>
+
+  <p>Found something broken? <a href="/simple-reminders-bug/">Report a bug</a>.</p>
+</div>
