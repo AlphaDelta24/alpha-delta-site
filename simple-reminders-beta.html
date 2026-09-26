@@ -14,7 +14,7 @@ permalink: /simple-reminders-beta/
     </div>
   </div>
 
-  <p>Simple Reminders is a local-first Android reminder app. No account, no cloud, no subscription — your reminders live on your phone. I'm running a small private beta before launch and I'd love your help finding anything broken.</p>
+  <p>Simple Reminders is a simple Android app that reminds you about the stuff you'd otherwise forget. Appointments, tasks, whatever; you'll get an alert on your phone of the reminder and nothing else. No account, no cloud, no subscription, no life coaching, no ads; just a simple reminder to water the plants on Sundays or give the dog his pill every 90 days. All data lives on your phone. I'm running a small private beta before launch and I'd love your help finding anything broken.</p>
 
   <p>This is a beta build. It may have bugs. That's why you're here.</p>
 
@@ -52,12 +52,46 @@ permalink: /simple-reminders-beta/
   </div>
 
   <div style="margin:28px 0;">
-    <a href="https://github.com/AlphaDelta24/simple-reminders-android/releases/download/v0.8.1-beta/app-debug.apk" download
+    <!-- The link and version below update themselves from the newest GitHub release (see the
+         script under this block). The href here is only the fallback if GitHub can't be reached:
+         the Releases page, which always works. Nothing on this page needs editing per release. -->
+    <a id="sr-download" href="https://github.com/AlphaDelta24/simple-reminders-android/releases"
       style="display:inline-block;background:var(--green);color:var(--navy-deep);text-decoration:none;font-weight:700;font-size:1rem;padding:14px 32px;border-radius:8px;">
       Download APK (Android only)
     </a>
-    <p style="margin:10px 0 0;font-size:0.8rem;color:var(--slate);">Version 0.8.1 beta — requires Android 8.0 or higher</p>
+    <p style="margin:10px 0 0;font-size:0.8rem;color:var(--slate);"><span id="sr-version">Latest beta</span>, requires Android 8.0 or higher</p>
+    <p style="margin:6px 0 0;font-size:0.8rem;"><a href="/simple-reminders-changelog/">See the full changelog</a></p>
   </div>
+
+  <script>
+    // Point the download button at the APK on the newest published GitHub release (pre-releases
+    // included, drafts skipped) and show its version. Any failure leaves the fallback above as-is.
+    (function () {
+      var link = document.getElementById('sr-download');
+      var version = document.getElementById('sr-version');
+      if (!link || !version || !window.fetch) return;
+      fetch('https://api.github.com/repos/AlphaDelta24/simple-reminders-android/releases?per_page=10')
+        .then(function (res) { return res.ok ? res.json() : Promise.reject(res.status); })
+        .then(function (releases) {
+          for (var i = 0; i < releases.length; i++) {
+            var rel = releases[i];
+            if (rel.draft) continue;
+            var assets = rel.assets || [];
+            var apk = null;
+            for (var j = 0; j < assets.length; j++) {
+              if (/\.apk$/i.test(assets[j].name)) { apk = assets[j]; break; }
+            }
+            if (!apk) continue; // a release without an APK attached is skipped
+            link.href = apk.browser_download_url;
+            var num = String(rel.tag_name).replace(/^v/i, '').replace(/-beta$/i, '');
+            var isBeta = rel.prerelease || /beta/i.test(rel.tag_name);
+            version.textContent = 'Version ' + num + (isBeta ? ' beta' : '');
+            return;
+          }
+        })
+        .catch(function () { /* keep the fallback link and text */ });
+    })();
+  </script>
 
 
   <h2>What I'm testing</h2>
